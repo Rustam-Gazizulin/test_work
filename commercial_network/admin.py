@@ -1,7 +1,7 @@
 from django.contrib import admin
-from django.urls import reverse
-from django.utils.html import format_html
-from django.utils.http import urlencode
+# from django.urls import reverse
+# from django.utils.html import format_html
+# from django.utils.http import urlencode
 
 from commercial_network.models import Contact, Products, Provider
 
