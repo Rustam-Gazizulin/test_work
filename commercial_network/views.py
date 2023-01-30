@@ -1,3 +1,5 @@
+import django_filters
+from rest_framework import filters
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 
 from commercial_network.models import Provider
@@ -10,6 +12,10 @@ class ProviderListView(ListAPIView):
     queryset = Provider.objects.order_by('level_in_hierarchy').all()
     serializer_class = ProviderListSerializer
     permission_classes = [ProviderPermission]
+    # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    # filterset_fields = ['name']
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['contact__country']
 
     def get(self, request, *args, **kwargs):
         cites = request.GET.get('city')
